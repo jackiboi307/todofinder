@@ -1,0 +1,13 @@
+[package]
+name = "todofinder"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+defer-rs = "0.1.0"
+walkdir = "2.5.0"
+
+[dependencies.termabc]
+version = "0.1.0"
+path = "../termabc"
+features = ["crossterm"]
