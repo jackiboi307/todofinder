@@ -61,14 +61,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let bytes = &*read_bytes::<6>()?;
 
         match bytes {
-            CTRL_C | ESCAPE => break,
-            ARROW_DOWN => {
+            CTRL_C | ESCAPE | b"q" => break,
+            ARROW_DOWN | b"j" => {
                 selected = (selected + 1) % todos.len()
             }
-            ARROW_UP => {
+            ARROW_UP | b"k" => {
                 selected = selected.checked_sub(1).unwrap_or_else(|| todos.len() - 1)
             }
-            RETURN => {
+            RETURN | ARROW_RIGHT | b"l" => {
                 let _ = restore_term();
                 Command::new(editor)
                     .arg("-c")
